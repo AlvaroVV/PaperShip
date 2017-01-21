@@ -6,6 +6,7 @@ public class MapLoop : MonoBehaviour {
 
 
     public float _speed = 1;
+
     public List<Map> maps;
 
     private Map currentMap;
@@ -29,7 +30,7 @@ public class MapLoop : MonoBehaviour {
         PutMaps();
 
         currentMap = maps[0];
-        currentMap.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, 0);
+        currentMap.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y - _camHeight/2 + currentMap.GetHeight()/2, 0);
         
        
 
@@ -63,7 +64,7 @@ public class MapLoop : MonoBehaviour {
     {
         for(int x = 0; x < maps.Count; x ++)
         {
-            maps[x].transform.position = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y + _camHeight,0);
+            maps[x].transform.position = new Vector3(mainCamera.transform.position.x,mainCamera.transform.position.y + _camHeight/2 + maps[x].GetHeight()/2,0);
         }
     }
 

@@ -14,11 +14,19 @@ public class PlayerController : MonoBehaviour {
 	public GameObject begin;
 	public GameObject end;
 
+
+    public enum Side
+    {
+        Left,
+        Right,
+    }
+
 	private BoxCollider2D collider;
 	
 	// Use this for initialization
 	void Start () {
 		collider = boat.GetComponent<BoxCollider2D>();
+
 	}
 	
 	public void moveUp()
