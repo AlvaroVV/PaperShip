@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
 	// variable que incrementa la relación pulsación-distancia de la bala
 	public int increment;
 
+    public GameObject scope;
 	public GameObject stone;
 	public GameObject boat;
 
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		increment = 5;
+        
 	}
 	
 	public void moveUp()
@@ -46,8 +47,35 @@ public class PlayerController : MonoBehaviour {
 		shoot.x = transform.position.x + shoot.x;
 		shoot.y = transform.position.y;
 
-		GameObject stone2 = GameObject.Instantiate(stone, shoot, Quaternion.identity);
+        WaveManager.Instance.SpawnWave(shoot);
+		
 	}
+
+    public void SetScope(float strength)
+    {
+        // vectores de distancia mínima y máxima
+        Vector2 minDistance = begin.transform.localPosition - transform.localPosition;
+        Vector2 maxDistance = end.transform.localPosition - transform.localPosition;
+
+        // obtenemos un vector director * fuerza
+        Vector2 shoot = minDistance.normalized;
+        shoot = shoot * strength * increment;
+
+        if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
+            shoot = maxDistance;
+        if (Mathf.Abs(shoot.x) < Mathf.Abs(minDistance.x))
+            shoot = minDistance;
+
+        shoot.x = transform.position.x + shoot.x;
+        shoot.y = transform.position.y;
+
+        scope.transform.position = shoot;
+    }
+
+    public GameObject GetScope()
+    {
+        return scope;
+    }
 
 	public void shootFixed()
 	{
