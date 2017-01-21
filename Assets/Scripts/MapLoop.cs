@@ -27,14 +27,18 @@ public class MapLoop : MonoBehaviour {
 
         currentMap = maps[0];
 
+       
+
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        Debug.Log(currentMap.transform.position.y + currentMap.GetHeight() / 2);
+        Debug.Log(mainCamera.transform.position.y - _camHeight);
         currentMap.transform.Translate(Vector2.down * _speed * Time.deltaTime);
-        if(currentMap.transform.position.y + currentMap.GetHeigth()/2 <mainCamera.transform.position.y -_camHeight)
+        if(currentMap.transform.position.y + currentMap.GetHeight()/2 <mainCamera.transform.position.y -_camHeight/2)
         {
-            currentMap.transform.position = new Vector3(currentMap.transform.position.x, mainCamera.transform.position.y + _camHeight + currentMap.GetHeigth()/2, currentMap.transform.position.z);
+            currentMap.transform.position = new Vector3(currentMap.transform.position.x, mainCamera.transform.position.y + _camHeight/2 + currentMap.GetHeight()/2, currentMap.transform.position.z);
         }
 		
 	}
