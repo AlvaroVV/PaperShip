@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	// variable que incrementa la relación pulsación-distancia de la bala
-	public int increment;
+	public int increment = 5;
 
     public GameObject scope;
 	public GameObject stone;
@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject begin;
 	public GameObject end;
+
+	private BoxCollider2D collider;
 	
 	// Use this for initialization
 	void Start () {
-        
+		collider = boat.GetComponent<BoxCollider2D>();
 	}
 	
 	public void moveUp()
@@ -29,20 +31,33 @@ public class PlayerController : MonoBehaviour {
 		transform.Translate(Vector3.down * Time.deltaTime * increment);
 	}
 
+	public void jump()
+	{
+		collider.isTrigger = true;
+	}
+
+	public void notJump()
+	{
+		collider.isTrigger = false;
+	}
+
 	public void shoot(float strength)
 	{
 		// vectores de distancia mínima y máxima
-		Vector2 minDistance = begin.transform.localPosition - transform.localPosition;
-		Vector2 maxDistance = end.transform.localPosition - transform.localPosition;
+        Vector2 minDistance = begin.transform.position - transform.position;
+        Vector2 maxDistance = end.transform.position - transform.position;
 
 		// obtenemos un vector director * fuerza
-		Vector2 shoot = minDistance.normalized;
-		shoot = shoot * strength * increment;
+		Vector2 shoot = minDistance;
+		shoot = shoot * strength;
 
 		if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
 			shoot = maxDistance;
 		if (Mathf.Abs(shoot.x) < Mathf.Abs(minDistance.x))
 			shoot = minDistance;
+
+		//Debug.Log("Shoot coords: " + shoot);
+		//Debug.Log("Max coords: " + maxDistance);
 
 		shoot.x = transform.position.x + shoot.x;
 		shoot.y = transform.position.y;
@@ -54,13 +69,14 @@ public class PlayerController : MonoBehaviour {
     public void SetScope(float strength)
     {
         // vectores de distancia mínima y máxima
-        Vector2 minDistance = begin.transform.localPosition - transform.localPosition;
-        Vector2 maxDistance = end.transform.localPosition - transform.localPosition;
+        Vector2 minDistance = begin.transform.position - transform.position;
+        Vector2 maxDistance = end.transform.position - transform.position;
 
         // obtenemos un vector director * fuerza
-        Vector2 shoot = minDistance.normalized;
-        shoot = shoot * strength * increment;
+        Vector2 shoot = minDistance;
+        shoot = shoot * strength;
 
+		
         if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
             shoot = maxDistance;
         if (Mathf.Abs(shoot.x) < Mathf.Abs(minDistance.x))
