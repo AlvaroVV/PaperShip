@@ -19,14 +19,8 @@ public class PlayerInputController2 : MonoBehaviour
 	{
 		Player = GetComponent<PlayerController>();
 	}
-
-	// Update is called once per frame
+	
 	void Update()
-	{
-
-	}
-
-	void FixedUpdate()
 	{
 		if (Input.GetKeyUp(ButtonShoot))
 		{

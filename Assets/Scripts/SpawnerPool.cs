@@ -54,8 +54,8 @@ public class SpawnerPool : MonoBehaviour {
         {
             int maxLoop = Random.Range(1, waveLoop);
             float finalWaveWait = Random.Range(0.2f, waveWait);
-            Debug.Log("WaveLoop -> " + maxLoop);
-            Debug.Log("WaveWait ->" + finalWaveWait);
+            //Debug.Log("WaveLoop -> " + maxLoop);
+            //Debug.Log("WaveWait ->" + finalWaveWait);
             for (int i = 0; i < maxLoop; i++)
             {
                 Vector3 randomPosition = new Vector3(Random.Range(min.x, max.x), transform.position.y, 0);
