@@ -36,8 +36,16 @@ public class PlayerController : MonoBehaviour {
 
 		if (RealStrength > MAX_STRENGTH)
 			RealStrength = MAX_STRENGTH;
-		
-		Debug.Log("Position me: " + transform.localPosition);
+
+		GameObject stone2 = GameObject.Instantiate(stone, new Vector3(RealStrength, transform.position.y, 0.0f), Quaternion.identity);
+	}
+
+	public void shootFixed()
+	{
+
+		float MIN_STRENGTH = begin.transform.position.x;
+
+		float RealStrength = MIN_STRENGTH + increment;
 
 		GameObject stone2 = GameObject.Instantiate(stone, new Vector3(RealStrength, transform.position.y, 0.0f), Quaternion.identity);
 	}
