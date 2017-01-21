@@ -10,6 +10,10 @@ public class Death : MonoBehaviour {
 		GetComponent<Health>().OnHealthChanged += CheckIsDead;
 	}
 
+	void Destroy(){
+		GetComponent<Health>().OnHealthChanged -= CheckIsDead;
+	}
+
 	void CheckIsDead(int health){
 		if(health <= 0){
 			Debug.Log( gameObject.name + " is dead");

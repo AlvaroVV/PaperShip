@@ -32,13 +32,13 @@ public class PlayerController : MonoBehaviour {
 		float MIN_STRENGTH = begin.transform.position.x;
 		float MAX_STRENGTH = end.transform.position.x;
 
-		Debug.Log("Position begin: " + begin.transform.position);
-		Debug.Log("Position end: " + end.transform.position);
 		float RealStrength = MIN_STRENGTH + strength * increment;
 
 		if (RealStrength > MAX_STRENGTH)
 			RealStrength = MAX_STRENGTH;
+		
+		Debug.Log("Position me: " + transform.localPosition);
 
-		GameObject.Instantiate(stone, new Vector3(transform.position.x + RealStrength, transform.position.y), Quaternion.identity);
+		GameObject stone2 = GameObject.Instantiate(stone, new Vector3(RealStrength, transform.position.y, 0.0f), Quaternion.identity);
 	}
 }
