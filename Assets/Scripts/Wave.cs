@@ -30,6 +30,7 @@ public class Wave : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		StartWave();
 	}
 
 	public void StartWave(){

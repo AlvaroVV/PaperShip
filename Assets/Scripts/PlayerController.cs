@@ -22,13 +22,13 @@ public class PlayerController : MonoBehaviour {
     }
 
 	private BoxCollider2D collider;
-	
+
 	// Use this for initialization
 	void Start () {
 		collider = boat.GetComponent<BoxCollider2D>();
 
 	}
-	
+
 	public void moveUp()
 	{
 		transform.Translate(Vector3.up * Time.deltaTime * increment);
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 		shoot.y = transform.position.y;
 
         WaveManager.Instance.SpawnWave(shoot);
-		
+
 	}
 
     public void SetScope(float strength)
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
         Vector2 shoot = minDistance;
         shoot = shoot * strength;
 
-		
+
         if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
             shoot = maxDistance;
         if (Mathf.Abs(shoot.x) < Mathf.Abs(minDistance.x))
@@ -103,7 +103,6 @@ public class PlayerController : MonoBehaviour {
 
 	public void shootFixed()
 	{
-
 		// vectores de distancia mínima y máxima
 		Vector2 dir = boat.transform.localPosition - transform.localPosition;
 
@@ -123,7 +122,7 @@ public class PlayerController : MonoBehaviour {
 		// vectores de distancia mínima y máxima en los dos ejes
 		Vector2 minDistanceX = begin.transform.localPosition - transform.localPosition;
 		Vector2 maxDistanceXY = end.transform.localPosition - transform.localPosition;
-		
+
 		// multiplicamos el vector director * fuerza
 		Vector2 shoot = dir;
 		shoot = shoot * strength * increment;
