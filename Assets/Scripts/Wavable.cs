@@ -22,7 +22,7 @@ public class Wavable : MonoBehaviour {
 		LimitVelocity();
 		ApplyWaterFriction();
 
-		LimitAngularVelocity();
+		// LimitAngularVelocity();
 	}
 
 	//Limita la velocidad del objeto a una _maxVelocity
@@ -57,15 +57,5 @@ public class Wavable : MonoBehaviour {
 			velocityLength = 0;
 		}
 		_rb.velocity =  _rb.velocity.normalized * velocityLength;
-	}
-
-	public void MoveGameObjectByWave(GameObject go, Vector2 forceDirection, float forceMultiplier, float strength, float strengthMultiplier){
-		Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
-		if(!rb) return;
-
-		Vector2 totalForce = forceDirection * forceMultiplier +
-					forceDirection * strength *strengthMultiplier;
-
-		rb.AddForce(totalForce);
 	}
 }
