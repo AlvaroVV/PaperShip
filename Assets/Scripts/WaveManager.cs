@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
+    private static WaveManager instance;
+    public static WaveManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
 
 	public GameObject _wavePrefab;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
 	// Use this for initialization
 	void Start () {

@@ -18,12 +18,8 @@ public class PlayerInputController : MonoBehaviour {
 		Player = GetComponent<PlayerController>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-	void FixedUpdate()
+	void Update()
 	{
 		if (Input.GetKey(ButtonUp))
 		{
@@ -34,16 +30,22 @@ public class PlayerInputController : MonoBehaviour {
 		{
 			Player.moveDown();
 		}
+        if(Input.GetKeyDown(ButtonShoot))
+        {
+            Player.GetScope().SetActive(true);
+        }
 
 		if (Input.GetKey(ButtonShoot))
 		{
 			TimeToShoot += Time.deltaTime;
+            Player.SetScope(TimeToShoot);
 		}
 
 		if (Input.GetKeyUp(ButtonShoot))
 		{
 			Player.shoot(TimeToShoot);
 			TimeToShoot = 0.0f;
-		}
+            Player.GetScope().SetActive(false);
+        }
 	}
 }
