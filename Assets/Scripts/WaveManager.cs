@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour {
 
+	public GameObject _wavePrefab;
+
 	// Use this for initialization
 	void Start () {
-
+		if(!_wavePrefab){
+			Debug.Log( "WaveManager not find Wave Prefab");
+		}
 	}
 
 	// Update is called once per frame
@@ -14,7 +18,9 @@ public class WaveManager : MonoBehaviour {
 
 	}
 
-	public void SpawnWave(Vector2 position, float strength){
-		Debug.Log("Wave on " + position + " with strength " + strength);
+	public void SpawnWave(Vector3 position){
+		if(!_wavePrefab) return;
+		GameObject waveGO = GameObject.Instantiate( _wavePrefab, position, _wavePrefab.transform.rotation) as GameObject;
+		waveGO.GetComponent<Wave>().StartWave();
 	}
 }

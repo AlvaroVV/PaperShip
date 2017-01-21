@@ -5,18 +5,26 @@ using UnityEngine;
 public class MouseController : MonoBehaviour {
 
 	public WaveManager _waveManager;
-	public float _waveStrength;
 
-	// Use this for initialization
 	void Start () {
-
 	}
 
-	// Update is called once per frame
 	void Update () {
 		if(Input.GetMouseButtonDown(0)){
-			Vector2 spawnPosition = Input.mousePosition;
-			_waveManager.SpawnWave( spawnPosition, _waveStrength);
+			_waveManager.SpawnWave( GetPoint());
 		}
+	}
+
+	Vector3 GetPoint(){
+		Vector3 point = Vector3.zero;
+
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		RaycastHit hit;
+
+		if (Physics.Raycast(ray, out hit)){
+			point = hit.point;
+		}
+
+		return point;
 	}
 }
