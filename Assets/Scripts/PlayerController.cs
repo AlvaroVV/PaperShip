@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour {
 		Vector2 shoot = minDistance.normalized;
 		shoot = shoot * strength * increment;
 
-		if (shoot.magnitude > maxDistance.magnitude)
+		if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
 			shoot = maxDistance;
-		if (shoot.magnitude < minDistance.magnitude)
+		if (Mathf.Abs(shoot.x) > Mathf.Abs(minDistance.x))
 			shoot = minDistance;
 
 		shoot.x = transform.position.x + shoot.x;
@@ -52,10 +52,10 @@ public class PlayerController : MonoBehaviour {
 	{
 
 		// vectores de distancia mínima y máxima
-		Vector2 minDistance = begin.transform.localPosition - transform.localPosition;
+		Vector2 dir = begin.transform.localPosition - transform.localPosition;
 
 		// obtenemos un vector director * fuerza
-		Vector2 shoot = minDistance.normalized;
+		Vector2 shoot = dir.normalized;
 		shoot = shoot * increment;
 
 		shoot.x = transform.position.x + shoot.x;
