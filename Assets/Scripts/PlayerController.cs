@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (Mathf.Abs(shoot.x) > Mathf.Abs(maxDistance.x))
 			shoot = maxDistance;
-		if (Mathf.Abs(shoot.x) > Mathf.Abs(minDistance.x))
+		if (Mathf.Abs(shoot.x) < Mathf.Abs(minDistance.x))
 			shoot = minDistance;
 
 		shoot.x = transform.position.x + shoot.x;
