@@ -5,8 +5,6 @@ using System;
 
 public class SettingsManager : MonoBehaviour {
 
-	public delegate void SettingsManagerEvent();
-	public SettingsManagerEvent OnSettingsReady;
 	private static SettingsManager _settingsManager;
 
 	private SettingsManager() {
@@ -52,10 +50,6 @@ public class SettingsManager : MonoBehaviour {
 		SetEffectsMute(PlayerPrefs.GetInt("EffectsMuted") != 0);
 		SetEffectsVolume(PlayerPrefs.GetFloat("EffectsVolume"));
 		SetFullScreen(PlayerPrefs.GetInt("FullScreen") == 1);
-
-		if(OnSettingsReady != null){
-			OnSettingsReady();
-		 }
 	}
 
 	void SaveSettings(){

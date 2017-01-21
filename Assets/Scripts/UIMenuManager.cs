@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIMenuManager : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class UIMenuManager : MonoBehaviour {
 	bool _isOptionsVisible;
 	public CanvasGroup _optionsCanvasGroup;
 
-	public Button _quiteGameButton;
+	public Button _quitGameButton;
 
 	public Slider _musicVolumeSlider;
 	public Slider _effectsVolumeSlider;
@@ -20,15 +21,17 @@ public class UIMenuManager : MonoBehaviour {
 
 	public Dropdown _screenModeDropdown;
 
+	public Button _playButton;
+	public CanvasGroup _playCanvasGroup;
+	public string _playLevelName = "LevelScene";
+
 
 	// Use this for initialization
 	void Awake () {
-		// SettingsManager.Instance.OnSettingsReady += InitUI;
 		InitUI();
 	}
 
 	void Destroy(){
-		SettingsManager.Instance.OnSettingsReady -= InitUI;
 	}
 
 	void SetVisibleCanvasGroup(CanvasGroup canvasGroup, bool visible){
@@ -37,26 +40,40 @@ public class UIMenuManager : MonoBehaviour {
 
 	void InitUI(){
 		if(_openOptionsButton != null){
-			if(_optionsCanvasGroup != null){
-				_openOptionsButton.onClick.AddListener(delegate{
+			_openOptionsButton.onClick.AddListener(delegate{
+				if(_optionsCanvasGroup != null){
 					_isOptionsVisible = true;
 					_optionsCanvasGroup.interactable = _isOptionsVisible;
 					_optionsCanvasGroup.alpha = _isOptionsVisible? 1 : 0;
-				});
-			}
+					_optionsCanvasGroup.blocksRaycasts = _isOptionsVisible;
+
+					if(_playCanvasGroup != null){
+						_playCanvasGroup.interactable = false;
+						_playCanvasGroup.alpha = 0;
+						_playCanvasGroup.blocksRaycasts = false;
+					}
+				}
+			});
+
 		}
 		if(_closeOptionsButton != null){
-			if(_optionsCanvasGroup != null){
-				_closeOptionsButton.onClick.AddListener(delegate{
+			_closeOptionsButton.onClick.AddListener(delegate{
+				if(_optionsCanvasGroup != null){
 					_isOptionsVisible = false;
 					_optionsCanvasGroup.interactable = _isOptionsVisible;
 					_optionsCanvasGroup.alpha = _isOptionsVisible? 1 : 0;
-				});
-			}
+				}
+				if(_playCanvasGroup != null){
+					_playCanvasGroup.interactable = true;
+					_playCanvasGroup.alpha = 1;
+					_playCanvasGroup.blocksRaycasts = true;
+				}
+			});
 		}
-		if(_quiteGameButton != null){
-			_quiteGameButton.onClick.AddListener( delegate{
+		if(_quitGameButton != null){
+			_quitGameButton.onClick.AddListener( delegate{
 				Application.Quit();
+				Debug.Log("quit");
 				});
 		}
 
@@ -95,6 +112,11 @@ public class UIMenuManager : MonoBehaviour {
 				else{
 					SettingsManager.Instance.SetFullScreen(false);
 				}
+			});
+		}
+		if(_playButton != null){
+			_playButton.onClick.AddListener(delegate{
+				SceneManager.LoadScene(_playLevelName);
 			});
 		}
 	}
