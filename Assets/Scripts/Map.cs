@@ -23,21 +23,9 @@ public class Map : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        sprite = spriteRenderer.sprite;
-
-        _pixelWidth = sprite.rect.width;
-        _pixelHeight = sprite.rect.height;
-
-        pixel2Unity = _pixelWidth / sprite.bounds.size.x; 
-
-        _unityWidth = _pixelWidth / pixel2Unity;
-        _unityHeigth = _pixelHeight /pixel2Unity;
-
-        _width = spriteRenderer.bounds.size.x;
-        _height = spriteRenderer.bounds.size.y;
+        InicializeProperties();
         
-        /*
+       /*
         Debug.Log("_pixelWidth ->" + _pixelWidth);
         Debug.Log("_pixelHeigth ->" + _pixelHeight);
         Debug.Log("_pixel2Unity ->" + pixel2Unity);
@@ -49,34 +37,60 @@ public class Map : MonoBehaviour {
 	
     public float GetPixelHeight()
     {
-
+        if (_pixelHeight == 0.0f)
+            InicializeProperties();
         return _pixelHeight;
     }
 
     public float getPixelWidth()
     {
+        if (_pixelWidth == 0.0f)
+            InicializeProperties();
         return _pixelWidth;
     }
 
     public float GetUnityWidth()
     {
+        if (_unityWidth == 0.0f)
+            InicializeProperties();
         return _unityWidth;
     }
 
     public float GetUnityHeight()
     {
+        if (_unityHeigth == 0.0f)
+            InicializeProperties();
         return _unityWidth;
     }
 
     public float GetHeight()
     {
+        if(_height == 0.0f)
+            InicializeProperties();
         return _height;
     }
 
     public float GetWidth()
     {
+        if (_width == 0.0f)
+            InicializeProperties();
         return _width;
     }
 
-        
+    private void InicializeProperties()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        sprite = spriteRenderer.sprite;
+
+        _pixelWidth = sprite.rect.width;
+        _pixelHeight = sprite.rect.height;
+
+        pixel2Unity = _pixelWidth / sprite.bounds.size.x;
+
+        _unityWidth = _pixelWidth / pixel2Unity;
+        _unityHeigth = _pixelHeight / pixel2Unity;
+
+        _width = spriteRenderer.bounds.size.x;
+        _height = spriteRenderer.bounds.size.y;
+    } 
 }
