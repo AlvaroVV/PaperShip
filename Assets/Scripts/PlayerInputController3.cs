@@ -24,14 +24,7 @@ public class PlayerInputController3 : MonoBehaviour
 			LeftPlayer = false;
 		Player = GetComponent<PlayerController>();
 	}
-
-	// Update is called once per frame
 	void Update()
-	{
-
-	}
-
-	void FixedUpdate()
 	{
 
 		// Track a single touch as a direction control.
