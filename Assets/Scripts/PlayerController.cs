@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public int increment;
 
 	public GameObject stone;
+	public GameObject boat;
 
 	public GameObject begin;
 	public GameObject end;
@@ -52,11 +53,11 @@ public class PlayerController : MonoBehaviour {
 	{
 
 		// vectores de distancia mínima y máxima
-		Vector2 dir = begin.transform.localPosition - transform.localPosition;
+		Vector2 dir = boat.transform.localPosition - transform.localPosition;
 
 		// obtenemos un vector director * fuerza
 		Vector2 shoot = dir.normalized;
-		shoot = shoot * increment;
+		shoot = shoot * dir.magnitude / 2;
 
 		shoot.x = transform.position.x + shoot.x;
 		shoot.y = transform.position.y;

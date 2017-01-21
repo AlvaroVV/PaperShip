@@ -28,20 +28,9 @@ public class PlayerInputController2 : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (Input.GetKey(ButtonUp))
-		{
-			Player.moveUp();
-		}
-
-		if (Input.GetKey(ButtonDown))
-		{
-			Player.moveDown();
-		}
-
 		if (Input.GetKeyUp(ButtonShoot))
 		{
 			Player.shootFixed();
-			TimeToShoot = 0.0f;
 		}
 	}
 }
