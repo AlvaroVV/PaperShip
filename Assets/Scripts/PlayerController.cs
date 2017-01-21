@@ -13,10 +13,19 @@ public class PlayerController : MonoBehaviour {
 
 	public GameObject begin;
 	public GameObject end;
+    public Side side;
+
+    public enum Side
+    {
+        Left,
+        Right,
+    }
 	
 	// Use this for initialization
 	void Start () {
-        
+        if (side == Side.Left)
+            transform.position = new Vector3((ResolutionManager.Instance.GetCameraPosition().x - ResolutionManager.Instance.GetCameraWidth()/2) + ResolutionManager.Instance.GetCameraWidth() / 2 *0.1f,
+                transform.position.y, transform.position.z);         
 	}
 	
 	public void moveUp()

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnerPool : MonoBehaviour {
 
-    public Map map;
     public float spawnWait = 0.5f;
     public float waveWait = 2.0f;
     public int waveLoop = 5;
@@ -20,9 +19,9 @@ public class SpawnerPool : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-        min = new Vector3(map.transform.position.x - map.GetWidth() / 2, transform.position.y,0);
-        max = new Vector3(map.transform.position.x + map.GetWidth() / 2, transform.position.y, 0);
+        float camWidth = ResolutionManager.Instance.GetCameraWidth();
+        min = new Vector3(ResolutionManager.Instance.GetCameraPosition().x - (camWidth/2) + (camWidth *0.3f), transform.position.y,0);
+        max = new Vector3(ResolutionManager.Instance.GetCameraPosition().x - (camWidth / 2) + (camWidth * 0.7f), transform.position.y, 0);
        
         CreatePool();
         //StartCoroutine(SpawnObjects());
