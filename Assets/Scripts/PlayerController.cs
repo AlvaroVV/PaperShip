@@ -49,4 +49,23 @@ public class PlayerController : MonoBehaviour {
 
 		GameObject stone2 = GameObject.Instantiate(stone, new Vector3(RealStrength, transform.position.y, 0.0f), Quaternion.identity);
 	}
+
+	public void shootDir(float strength, Vector2 dir)
+	{
+		Vector2 FinalPos = dir * strength;
+
+		float MIN_STRENGTH = begin.transform.position.x;
+		float MAX_STRENGTH = end.transform.position.x;
+
+		float RealStrength = MIN_STRENGTH + strength * increment;
+
+		if (dir.x < MIN_STRENGTH)
+			dir.x = MIN_STRENGTH;
+
+		if (dir.y < MAX_STRENGTH)
+			dir.y = MAX_STRENGTH;
+
+		GameObject stone2 = GameObject.Instantiate(stone, dir * strength, Quaternion.identity);
+	}
+
 }
