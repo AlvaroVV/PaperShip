@@ -14,4 +14,6 @@ public class BoatController : MonoBehaviour {
 		float step = _speed * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, new Vector2(transform.position.x, _targetY), step);
 	}
+
+
 }

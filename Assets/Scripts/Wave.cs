@@ -63,8 +63,6 @@ public class Wave : MonoBehaviour {
 					Vector2 waveForceDirection = (coll.gameObject.transform.position - transform.position).normalized;
 
 					if(!_rotationActive){
-
-
 						MoveGameObjectByWave(
 							coll.gameObject,
 							waveForceDirection,
