@@ -25,13 +25,13 @@ public class Map : MonoBehaviour {
 	void Start () {
         InicializeProperties();
         
-       
+       /*
         Debug.Log("_pixelWidth ->" + _pixelWidth);
         Debug.Log("_pixelHeigth ->" + _pixelHeight);
         Debug.Log("_pixel2Unity ->" + pixel2Unity);
         Debug.Log("_unityWidth ->" + _width);
         Debug.Log("_unityHeight ->" + _height);
-        
+        */
 
     }
 	

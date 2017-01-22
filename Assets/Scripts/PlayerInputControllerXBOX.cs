@@ -51,25 +51,29 @@ public class PlayerInputControllerXBOX : MonoBehaviour {
 		if (Input.GetButton(ButtonShoot))
 		{
 			_timePrepareForShoot += Time.deltaTime;
-			if(_leftPlayer){
-				Player.GetScope().transform.position = _initialHitPosition.position + Vector3.right * _timePrepareForShoot * _shootingForce;
-				Player.GetScope().transform.position = new Vector3( Mathf.Min(Player.GetScope().transform.position.x, _boat.position.x), Player.GetScope().transform.position.y, Player.GetScope().transform.position.z);
-			}
-			else{
-				Player.GetScope().transform.position = _initialHitPosition.position + Vector3.left * _timePrepareForShoot * _shootingForce;
-				Player.GetScope().transform.position = new Vector3( Mathf.Max(Player.GetScope().transform.position.x, _boat.position.x), Player.GetScope().transform.position.y, Player.GetScope().transform.position.z);
-			}
-			// Player.SetScope(TimeToShoot);
-		}
+            if (_leftPlayer)
+            {
+                Player.GetScope().transform.position = _initialHitPosition.position + Vector3.right * _timePrepareForShoot * _shootingForce;
+                Player.GetScope().transform.position = new Vector3(Mathf.Clamp(Player.GetScope().transform.position.x, _initialHitPosition.position.x, _boat.position.x), Player.GetScope().transform.position.y, Player.GetScope().transform.position.z);
+            }
+            else
+            {
+                Player.GetScope().transform.position = _initialHitPosition.position + Vector3.left * _timePrepareForShoot * _shootingForce;
+                Player.GetScope().transform.position = new Vector3(Mathf.Clamp(Player.GetScope().transform.position.x, _boat.position.x, _initialHitPosition.position.x), Player.GetScope().transform.position.y, Player.GetScope().transform.position.z);
 
-		if (Input.GetButtonUp(ButtonShoot))
+            }
+
+            // Player.SetScope(TimeToShoot);_bo
+        }
+
+        if (Input.GetButtonUp(ButtonShoot))
 		{
 			// Player.shoot(TimeToShoot);
 			// TimeToShoot = 0.0f;
 			_timePrepareForShoot = 0.0f;
 			Player.GetScope().SetActive(false);
 
-			GameObject.Instantiate(_wavePrefab, Player.GetScope().transform.position, _wavePrefab.transform.rotation);
+			Instantiate(_wavePrefab, Player.GetScope().transform.position, _wavePrefab.transform.rotation);
 
 			// Player.GetScope().transform.position = _initialHitPosition.position;
 		}

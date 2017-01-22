@@ -48,8 +48,8 @@ public class Wave : MonoBehaviour {
 
 			//Set new scale for wave
 			_waveRadius += _waveScaleIncrement;
-			Vector3 newScale = new Vector3(_waveRadius, 1, _waveRadius);
-			gameObject.transform.localScale = newScale;
+			//Vector3 newScale = new Vector3(_waveRadius, 1, _waveRadius);
+			//gameObject.transform.localScale = newScale;
 
 			//Comprueba los objetos que golpea la onda
 			Collider2D[] waveColls = Physics2D.OverlapCircleAll(

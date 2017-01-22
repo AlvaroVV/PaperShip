@@ -16,6 +16,9 @@ public class BoatController : MonoBehaviour {
 	Collider2D _collider;
 	SpriteRenderer _spriteRenderer;
 
+    private bool leftSensor;
+    private bool rightSensor;
+
 	void Start(){
 		_collider = GetComponent<Collider2D>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,10 +30,12 @@ public class BoatController : MonoBehaviour {
 		}
 	}
 
+    /*
 	void FixedUpdate () {
 		float step = _speed * Time.deltaTime;
 		transform.position = Vector3.MoveTowards(transform.position, new Vector2(transform.position.x, _targetY), step);
 	}
+    */
 
 	public void Jump(){
 		if(!_isJumping){
@@ -60,5 +65,23 @@ public class BoatController : MonoBehaviour {
 		_isJumping = false;
 
 	}
+
+    public void SetActiveLeftSensor(bool active)
+    {
+        Debug.Log("IZQ");
+        leftSensor = active;
+    }
+
+    public void SetActiveRightSensor(bool active)
+    {
+        Debug.Log("DER");
+        rightSensor = active;
+    }
+
+    public bool ReadyToJump()
+    {
+       
+        return (rightSensor && leftSensor);
+    }
 
 }

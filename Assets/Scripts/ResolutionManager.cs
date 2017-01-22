@@ -32,10 +32,11 @@ public class ResolutionManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _camera = Camera.main;
+
+        _camera.orthographicSize = 1f / _camera.aspect * 20f / 2f;
         _cameraHeight = 2f * _camera.orthographicSize;
         _cameraWidth = _cameraHeight * _camera.aspect;
 
-        _camera.orthographicSize = 1f / _camera.aspect * 20f / 2f;
         Debug.Log(Screen.currentResolution.width);
         
     }
