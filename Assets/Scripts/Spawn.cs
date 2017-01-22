@@ -20,7 +20,7 @@ public class Spawn : MonoBehaviour {
 
         _maxYSpawn = _mainCameraTransform.position.y - _maincamera.orthographicSize;
     }
-	
+
 	// Update is called once per frame
 	void FixedUpdate () {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
@@ -31,7 +31,7 @@ public class Spawn : MonoBehaviour {
 
     void OnEnable()
     {
-        obj = Instantiate(ObjectsToChoose[Random.Range(0, ObjectsToChoose.Count - 1)], transform.position, Quaternion.identity);
+        obj = Instantiate(ObjectsToChoose[Random.Range(0, ObjectsToChoose.Count )], transform.position, Quaternion.identity);
         obj.transform.parent = transform;
     }
 
