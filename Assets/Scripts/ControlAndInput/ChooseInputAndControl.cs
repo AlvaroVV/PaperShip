@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChooseInputAndControl : MonoBehaviour {
 
-    void Start()
+    void Awake()
     {
         if (Application.platform == RuntimePlatform.Android)
         {
