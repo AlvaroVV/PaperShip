@@ -25,7 +25,7 @@ public class UIMenuManager : MonoBehaviour {
 	public CanvasGroup _playCanvasGroup;
 	public string _playLevelName = "LevelScene";
 
-
+	
 	// Use this for initialization
 	void Awake () {
 		InitUI();

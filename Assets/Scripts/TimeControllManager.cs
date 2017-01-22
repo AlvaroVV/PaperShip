@@ -7,6 +7,7 @@ public class TimeControllManager : MonoBehaviour {
     public List<AudioClip> audios;
     public MapLoop mapLoop;
     private AudioSource audioSource;
+	public SpawnerPool spawner;
 
 	private static TimeControllManager instance;
 	public static TimeControllManager Instance
@@ -27,7 +28,10 @@ public class TimeControllManager : MonoBehaviour {
 	{
 		mapLoop._speed = 0;
 		audioSource.Stop();
+		spawner.SetGameFinished(true);
+		UIManager.Instance.ShowFinalPanel();
 	}
+	
 
 	// Use this for initialization
 	void Start () {

@@ -11,10 +11,17 @@ public class SpawnerPool : MonoBehaviour {
     private Vector3 min;
     private Vector3 max;
 
+	private bool _finishedGame = false;
+
     //Pool de Spawns
     public GameObject spwan;
     public int amountPool = 3;
     private List<GameObject> poolSpawns = new List<GameObject>();
+
+	public void SetGameFinished(bool value)
+	{
+		_finishedGame = value;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +55,7 @@ public class SpawnerPool : MonoBehaviour {
 
     IEnumerator SpawnRandomObjects()
     {
-        while (true)
+        while (!_finishedGame)
         {
             int maxLoop = Random.Range(1, waveLoop);
             float finalWaveWait = Random.Range(0.2f, waveWait);
