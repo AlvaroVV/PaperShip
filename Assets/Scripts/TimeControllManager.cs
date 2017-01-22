@@ -58,7 +58,7 @@ public class TimeControllManager : MonoBehaviour {
             audioSource.Play();
             yield return new WaitForSeconds(audios[i].length);
             mapLoop._speed += 1;
-            Debug.Log("CAMBIO");
+           
         }
         yield return null;
 
