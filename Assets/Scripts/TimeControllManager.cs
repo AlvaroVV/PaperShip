@@ -7,6 +7,28 @@ public class TimeControllManager : MonoBehaviour {
     public List<AudioClip> audios;
     public MapLoop mapLoop;
     private AudioSource audioSource;
+
+	private static TimeControllManager instance;
+	public static TimeControllManager Instance
+	{
+		get
+		{
+			return instance;
+		}
+	}
+
+
+	void Awake()
+	{
+		instance = this;
+	}
+
+	public void FinishGame()
+	{
+		mapLoop._speed = 0;
+		audioSource.Stop();
+	}
+
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();

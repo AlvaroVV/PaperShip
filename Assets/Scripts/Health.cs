@@ -35,6 +35,7 @@ public class Health : MonoBehaviour {
             if (currentHP <= 0)
             {
                 Debug.Log("MUERTO");
+				TimeControllManager.Instance.FinishGame();
             }
 
             StartCoroutine(TimeInvencible());
@@ -44,9 +45,7 @@ public class Health : MonoBehaviour {
     IEnumerator TimeInvencible()
     {
         
-        GetComponent<MeshRenderer>().sharedMaterial.color = Color.red;
         yield return new WaitForSeconds(_timeInvencible);
-        GetComponent<MeshRenderer>().sharedMaterial.color = Color.white;
         invencible = false;
     }
 
