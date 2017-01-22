@@ -11,7 +11,7 @@ public class BoatController : MonoBehaviour {
 	bool _isJumping = false;
 	public float _jumpScaleIncrement = 0.01f;
 	public float _maxSize = 1.4f;
-	public float _timeOnAir = 1f;    
+	public float _timeOnAir = 1f;
 
 	Collider2D _collider;
 	SpriteRenderer _spriteRenderer;
@@ -75,7 +75,7 @@ public class BoatController : MonoBehaviour {
 
     public bool ReadyToJump()
     {
-       
+
         return (rightSensor && leftSensor);
     }
 

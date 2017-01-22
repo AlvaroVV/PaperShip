@@ -16,6 +16,8 @@ public class SpawnerPool : MonoBehaviour {
 	public int amountPool = 3;
 	private List<GameObject> poolSpawns = new List<GameObject>();
 
+	IEnumerator routine;
+
     private bool FinishLoop = false;
 
 	// Use this for initialization
@@ -29,7 +31,9 @@ public class SpawnerPool : MonoBehaviour {
 	}
 
 	public void BeginSpawns(){
-		StartCoroutine(SpawnRandomObjects());
+		Debug.Log("BeginSpawns");
+		routine = SpawnRandomObjects();
+		StartCoroutine(routine);
 	}
 
 	// Update is called once per frame
@@ -101,6 +105,8 @@ public class SpawnerPool : MonoBehaviour {
 
     public void SetFinishLoop(bool finish)
     {
-        FinishLoop = finish;
+    	StopCoroutine(routine);
+    	// StopCoroutine("SpawnRandomObjects");
+        // FinishLoop = finish;
     }
 }

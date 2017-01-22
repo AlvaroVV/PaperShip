@@ -25,7 +25,41 @@ public class UIMenuManager : MonoBehaviour {
 	public CanvasGroup _playCanvasGroup;
 	public string _playLevelName = "LevelScene";
 
-	
+	public CanvasGroup rootGroup;
+
+	public CanvasGroup gameOverGroup;
+
+	public CanvasGroup titleGroup;
+
+	public void ShowMenu(){
+		rootGroup.alpha = 1;
+		rootGroup.interactable = true;
+	}
+
+	public void HideMenu(){
+		rootGroup.alpha = 0;
+		rootGroup.interactable = false;
+	}
+
+	public void ShowTitle(){
+		titleGroup.alpha = 1;
+		titleGroup.interactable = true;
+	}
+
+	public void HideTitle(){
+		titleGroup.alpha = 0;
+		titleGroup.interactable = false;
+	}
+
+	public void ShowGameOver(){
+		gameOverGroup.alpha = 1;
+	}
+
+	public void HideGameOver(){
+		gameOverGroup.alpha = 0;
+	}
+
+
 	// Use this for initialization
 	void Awake () {
 		InitUI();
@@ -116,8 +150,8 @@ public class UIMenuManager : MonoBehaviour {
 		}
 		if(_playButton != null){
 			_playButton.onClick.AddListener(delegate{
-                gameObject.SetActive(false);
-
+				HideMenu();
+				GameManager.Instance.StartGame();
 			});
 		}
 	}

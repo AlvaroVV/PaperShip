@@ -20,13 +20,33 @@ public class Health : MonoBehaviour {
 	public int numBlinksOnInvencible = 5;
 	int currentBlink = 0;
 
+	IEnumerator routine;
+
+	Vector3 initialScale;
+	bool initialRestart = true;
+
 	void Start()
 	{
 		anim = GetComponentInChildren<Animator>();
 		audio = GetComponent<AudioSource>();
 		currentHP = _health;
 		text.text = currentHP + "/" + _health;
+		initialScale = transform.localScale;
 
+	}
+
+	public void Restart(){
+		currentHP = _health;
+		if(initialRestart){
+			initialRestart = false;
+		}
+		else{
+			anim.SetTrigger("Restart");
+		}
+		transform.localScale = initialScale;
+		if(routine != null)
+			StopCoroutine(routine);
+		SetAlpha(1);
 	}
 
 	public void Hit(int damage){
@@ -40,9 +60,10 @@ public class Health : MonoBehaviour {
 			if (currentHP <= 0)
 			{
 				anim.SetTrigger("Muerto");
+				GameManager.Instance.GameOver(true);
 			}
-
-			StartCoroutine(TimeInvencible());
+			routine = TimeInvencible();
+			StartCoroutine(routine);
 		}
 	}
 

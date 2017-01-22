@@ -12,6 +12,10 @@ public class LevelStartAnimation : MonoBehaviour {
 	public Transform _playerLeftTarget;
 	public Transform _playerRightTarget;
 
+	Vector3 _boatInitialPos;
+	Vector3 _playerLeftInitialPos;
+	Vector3 _playerRightInitialPos;
+
 	public float _boatSpeed = 3;
 	public float _playerSpeed = 4;
 
@@ -21,24 +25,31 @@ public class LevelStartAnimation : MonoBehaviour {
 	InputAndroid inputAndroid;
 
 	void Start(){
+		_boatInitialPos = _boat.transform.position;
+		_playerLeftInitialPos = _playerLeft.transform.position;
+		_playerRightInitialPos = _playerRight.transform.position;
 		//StartAnimation();
 	}
 
 	public void StartAnimation(){
+
+		_boat.transform.position = _boatInitialPos;
+		_playerLeft.transform.position = _playerLeftInitialPos;
+		_playerRight.transform.position = _playerRightInitialPos;
+
+
 		_boat.GetComponent<Collider2D>().enabled = false;
 		spawner = GameObject.FindObjectOfType<SpawnerPool>();
 
-		inputPC = GameObject.FindObjectOfType<InputPC>();
-
-		if(inputPC != null){
-			inputPC.enabled = false;
-		}
-		else{
-			inputAndroid = GameObject.FindObjectOfType<InputAndroid>();
-			inputAndroid.enabled = false;
-		}
+		GameManager.Instance.DisableInput();
 
 		StartCoroutine(AnimationCycle());
+	}
+
+	void EndAnimation(){
+		_boat.GetComponent<Collider2D>().enabled = true;
+		GameManager.Instance.EnableInput();
+		GameManager.Instance.GameReady();
 	}
 
 	IEnumerator AnimationCycle(){
@@ -68,16 +79,10 @@ public class LevelStartAnimation : MonoBehaviour {
 
 
 		yield return new WaitForSeconds(1f);
+		// EndAnimation();
 		_boat.GetComponent<Collider2D>().enabled = true;
-
-
-		if(inputPC != null){
-			inputPC.enabled = true;
-		}
-		else{
-			inputAndroid.enabled = true;
-		}
-		spawner.BeginSpawns();
+		GameManager.Instance.EnableInput();
+		GameManager.Instance.GameReady();
 
 		yield return null;
 	}

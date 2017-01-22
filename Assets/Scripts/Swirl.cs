@@ -10,6 +10,7 @@ public class Swirl : MonoBehaviour {
 	bool swirlActive = true;
 
 	float eatScale = 0.05f;
+	float eatSpeed = 2f;
 	void OnTriggerStay2D(Collider2D other){
 		if(other.gameObject.tag == "Boat"){
 			timeInSwirl += Time.deltaTime;
@@ -30,11 +31,13 @@ public class Swirl : MonoBehaviour {
 	IEnumerator Eat(GameObject go){
 
 		while(go.transform.localScale.x > 0.2f){
+			go.transform.position = Vector3.MoveTowards(go.transform.position, transform.position, eatSpeed * Time.deltaTime);
 			go.transform.localScale -= new Vector3(eatScale, eatScale, 1);
 			yield return null;
 		}
 
 		go.SetActive(false);
+		GameManager.Instance.GameOver(true);
 	}
 
 }

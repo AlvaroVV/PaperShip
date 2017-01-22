@@ -24,32 +24,13 @@ public class TimeControllManager : MonoBehaviour {
 		instance = this;
 	}
 
-	public void FinishGame()
-	{
-		mapLoop._speed = 0;
-		audioSource.Stop();
-		spawner.SetFinishLoop(true);
-		UIManager.Instance.ShowFinalPanel();
-
-
-		if (Application.platform == RuntimePlatform.Android)
-		{
-			GetComponent<InputAndroid>().enabled = false;
-			GetComponent<PlayerControllerAndroid>().enabled = false;
-		}
-		else
-		{
-			GetComponent<InputPC>().enabled = false;
-			GetComponent<PlayerControllerPC>().enabled = false;
-		}
-	}
 
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(StartControlTime());
 	}
-	
+
 	private IEnumerator StartControlTime()
     {
         for(int i = 0; i<audios.Count-1; i++)
@@ -58,7 +39,7 @@ public class TimeControllManager : MonoBehaviour {
             audioSource.Play();
             yield return new WaitForSeconds(audios[i].length);
             mapLoop._speed += 1;
-           
+
         }
         yield return null;
 
