@@ -16,6 +16,8 @@ public class SpawnerPool : MonoBehaviour {
 	public int amountPool = 3;
 	private List<GameObject> poolSpawns = new List<GameObject>();
 
+    private bool FinishLoop = false;
+
 	// Use this for initialization
 	void Start () {
 		float camWidth = ResolutionManager.Instance.GetCameraWidth();
@@ -51,7 +53,7 @@ public class SpawnerPool : MonoBehaviour {
 
 	IEnumerator SpawnRandomObjects()
 	{
-		while (true)
+		while (!FinishLoop)
 		{
 			int maxLoop = Random.Range(1, waveLoop);
 			float finalWaveWait = Random.Range(0.2f, waveWait);
@@ -96,4 +98,9 @@ public class SpawnerPool : MonoBehaviour {
 		poolSpawns.Add(gameObject);
 		return gameObject;
 	}
+
+    public void SetFinishLoop(bool finish)
+    {
+        FinishLoop = finish;
+    }
 }

@@ -31,7 +31,7 @@ public class Spawn : MonoBehaviour {
 
     void OnEnable()
     {
-        obj = Instantiate(ObjectsToChoose[Random.Range(0, ObjectsToChoose.Count )], transform.position, Quaternion.identity);
+        obj = Instantiate(ObjectsToChoose[Random.Range(0, ObjectsToChoose.Count -1)], transform.position, Quaternion.identity);
         obj.transform.parent = transform;
     }
 

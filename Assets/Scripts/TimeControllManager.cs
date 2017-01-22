@@ -28,7 +28,7 @@ public class TimeControllManager : MonoBehaviour {
 	{
 		mapLoop._speed = 0;
 		audioSource.Stop();
-		spawner.SetGameFinished(true);
+		spawner.SetFinishLoop(true);
 		UIManager.Instance.ShowFinalPanel();
 
 
