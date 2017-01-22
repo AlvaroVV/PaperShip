@@ -14,6 +14,8 @@ public class PlayerControllerAndroid : MonoBehaviour {
     public GameObject leftSensor;
     public GameObject rightSensor;
 
+    public SpriteRenderer SpriteLeft;
+    public SpriteRenderer SpriteRight;
     private GameObject PlayerLeft;
     private GameObject PlayerRight;
 
@@ -34,11 +36,15 @@ public class PlayerControllerAndroid : MonoBehaviour {
 
     public void TouchLeft(Touch touch)
     {
-        if((touch.position.y> PlayerLeft.transform.position.y) || (touch.position.y < PlayerLeft.transform.position.y))
+        Vector3 vector = Camera.main.ScreenToWorldPoint(touch.position);
+        text_1.text = "Max: "+ SpriteLeft.sprite.bounds.max.x;
+        text_3.text = "Extends: " + SpriteLeft.sprite.bounds.extents.y;
+        if ((vector.y > PlayerLeft.transform.position.y + SpriteLeft.sprite.bounds.extents.y) || (vector.y < PlayerLeft.transform.position.y - SpriteLeft.sprite.bounds.extents.y))
         {
-            Vector3 vector = Camera.main.ScreenToWorldPoint(touch.position);
             MoveLeft(vector);
         }
+        else
+            ShootLeft();
         
 
     }
@@ -53,16 +59,54 @@ public class PlayerControllerAndroid : MonoBehaviour {
 
     private void ShootLeft()
     {
+        Vector3 vector;
+        if ((PlayerLeft.transform.position.y <= boat.transform.position.y + boat.sprite.bounds.extents.y)&&(
+            PlayerLeft.transform.position.y >= boat.transform.position.y - boat.sprite.bounds.extents.y))
+        {
+            vector = new Vector3(leftSensor.transform.position.x,
+                                   PlayerLeft.transform.position.y,
+                                   PlayerLeft.transform.position.z);
+        }
+        else
+        {
+            vector = new Vector3(ResolutionManager.Instance.GetCameraPosition().x,
+                                PlayerLeft.transform.position.y,
+                                PlayerLeft.transform.position.z);
+        }
 
+        Instantiate(WaterWave, vector, Quaternion.identity);
     }
 
     public void TouchRight(Touch touch)
     {
-        if ((touch.position.y > PlayerRight.transform.position.y) || (touch.position.y < PlayerRight.transform.position.y))
+        Vector3 vector = Camera.main.ScreenToWorldPoint(touch.position);
+        text_2.text = vector.ToString();
+        if ((vector.y > PlayerRight.transform.position.y + SpriteRight.sprite.bounds.extents.y) || (vector.y < PlayerRight.transform.position.y - SpriteRight.sprite.bounds.extents.y))
         {
-            Vector3 vector = Camera.main.ScreenToWorldPoint(touch.position);
             MoveRight(vector);
         }
+        else
+            ShootRight();
+    }
+
+    private void ShootRight()
+    {
+        Vector3 vector;
+        if ((PlayerRight.transform.position.y <= boat.transform.position.y + boat.sprite.bounds.extents.y) && (
+            PlayerRight.transform.position.y >= boat.transform.position.y - boat.sprite.bounds.extents.y))
+        {
+            vector = new Vector3(rightSensor.transform.position.x,
+                                   PlayerRight.transform.position.y,
+                                   PlayerRight.transform.position.z);
+        }
+        else
+        {
+            vector = new Vector3(ResolutionManager.Instance.GetCameraPosition().x,
+                                PlayerRight.transform.position.y,
+                                PlayerRight.transform.position.z);
+        }
+
+        Instantiate(WaterWave, vector, Quaternion.identity);
     }
 
     private void MoveRight(Vector3 position)
@@ -75,11 +119,12 @@ public class PlayerControllerAndroid : MonoBehaviour {
     void Update()
     {
         MoveTo(PlayerLeft, positionLeft);
+        MoveTo(PlayerRight, positionRight);
     }
 
     private void MoveTo(GameObject player, Vector3 position)
     {
-        player.transform.position = Vector3.MoveTowards(player.transform.position, position, Time.deltaTime * 2);
+        player.transform.position = Vector3.MoveTowards(player.transform.position, position, Time.deltaTime * speed);
     }
 
     /*

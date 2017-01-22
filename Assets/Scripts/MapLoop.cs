@@ -5,7 +5,7 @@ using UnityEngine;
 public class MapLoop : MonoBehaviour {
 
 
-    public float _speed = 1;
+    public float _speed = 2;
 
     public List<Map> maps;
 

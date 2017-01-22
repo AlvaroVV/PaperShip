@@ -44,8 +44,8 @@ public class PlayerControllerPC : MonoBehaviour {
     public void ThrowStoneLeft()
     {
         Vector3 vector;
-        if ((PlayerLeft.transform.position.y <= boat.transform.position.y + boat.sprite.rect.height / 2)
-            && (PlayerLeft.transform.position.y >= boat.transform.position.y - boat.sprite.rect.height / 2))
+        if ((PlayerLeft.transform.position.y <= boat.transform.position.y + boat.sprite.bounds.extents.y)
+            && (PlayerLeft.transform.position.y >= boat.transform.position.y - boat.sprite.bounds.extents.y))
         {
             vector = new Vector3(leftSensor.transform.position.x,
                                     PlayerLeft.transform.position.y,
@@ -65,8 +65,8 @@ public class PlayerControllerPC : MonoBehaviour {
     public void ThrowStoneRight()
     {
         Vector3 vector;
-        if ((PlayerRight.transform.position.y <= boat.transform.position.y + boat.sprite.rect.height / 2)
-            && (PlayerRight.transform.position.y >= boat.transform.position.y - boat.sprite.rect.height / 2))
+        if ((PlayerRight.transform.position.y <= boat.transform.position.y + boat.sprite.bounds.extents.y)
+            && (PlayerRight.transform.position.y >= boat.transform.position.y - boat.sprite.bounds.extents.y))
         {
             vector = new Vector3(rightSensor.transform.position.x,
                                     PlayerRight.transform.position.y,

@@ -16,7 +16,6 @@ public class SpawnerPool : MonoBehaviour {
     public int amountPool = 3;
     private List<GameObject> poolSpawns = new List<GameObject>();
 
-
 	// Use this for initialization
 	void Start () {
         float camWidth = ResolutionManager.Instance.GetCameraWidth();
@@ -88,6 +87,7 @@ public class SpawnerPool : MonoBehaviour {
     {
         GameObject gameObject = Instantiate(spwan, transform.position, Quaternion.identity);
         
+
         gameObject.name = name;
         gameObject.SetActive(false);
         poolSpawns.Add(gameObject);

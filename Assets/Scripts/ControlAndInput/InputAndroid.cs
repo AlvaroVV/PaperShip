@@ -22,11 +22,14 @@ public class InputAndroid : MonoBehaviour {
         for(int i = 0; i<nTouches; i++)
         {
             Touch touch = Input.GetTouch(i);
-            //Lado Izquierdo
-            if (touch.position.x < Screen.width * 0.2)
-                player.TouchLeft(touch);
-            else if (touch.position.x > Screen.width * 0.8)
-                player.TouchRight(touch);
+            if (touch.phase == TouchPhase.Began)
+            {
+                //Lado Izquierdo
+                if (touch.position.x < Screen.width * 0.2)
+                    player.TouchLeft(touch);
+                else if (touch.position.x > Screen.width * 0.8)
+                    player.TouchRight(touch);
+            }
         }
     }
 }

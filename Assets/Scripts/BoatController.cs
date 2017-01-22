@@ -9,9 +9,9 @@ public class BoatController : MonoBehaviour {
 	public float _targetY = 0f;
 	public float _speed = 1f;
 	bool _isJumping = false;
-	float _jumpScaleIncrement = 0.05f;
-	float _maxSize = 1.4f;
-	float _timeOnAir = 0.5f;
+	public float _jumpScaleIncrement = 0.01f;
+	public float _maxSize = 1.4f;
+	public float _timeOnAir = 1f;    
 
 	Collider2D _collider;
 	SpriteRenderer _spriteRenderer;

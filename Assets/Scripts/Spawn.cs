@@ -5,10 +5,13 @@ using UnityEngine;
 public class Spawn : MonoBehaviour {
 
     public float speed = 1;
+    public List<GameObject> ObjectsToChoose;
+    private GameObject obj;
 
     private float _maxYSpawn;
     private Camera _maincamera;
     private Transform _mainCameraTransform;
+
 
 	// Use this for initialization
 	void Start () {
@@ -24,5 +27,16 @@ public class Spawn : MonoBehaviour {
 
         if (transform.position.y < _maxYSpawn)
             gameObject.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        obj = Instantiate(ObjectsToChoose[Random.Range(0, ObjectsToChoose.Count - 1)], transform.position, Quaternion.identity);
+        obj.transform.parent = transform;
+    }
+
+    void OnDisable()
+    {
+        Destroy(obj);
     }
 }
