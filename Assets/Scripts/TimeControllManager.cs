@@ -31,7 +31,6 @@ public class TimeControllManager : MonoBehaviour {
 		spawner.SetGameFinished(true);
 		UIManager.Instance.ShowFinalPanel();
 	}
-	
 
 	// Use this for initialization
 	void Start () {
