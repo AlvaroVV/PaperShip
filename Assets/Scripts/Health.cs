@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
-	public Text text;
 	public delegate void HealthEvent(int health);
 	public HealthEvent OnHealthChanged;
 
@@ -30,7 +29,6 @@ public class Health : MonoBehaviour {
 		anim = GetComponentInChildren<Animator>();
 		audio = GetComponent<AudioSource>();
 		currentHP = _health;
-		text.text = currentHP + "/" + _health;
 		initialScale = transform.localScale;
 
 	}
@@ -55,7 +53,6 @@ public class Health : MonoBehaviour {
 			invencible = true;
 			currentHP -= damage;
 			anim.SetTrigger("Vida" + currentHP);
-			text.text = currentHP + "/" + _health;
 			audio.Play();
 			if (currentHP <= 0)
 			{

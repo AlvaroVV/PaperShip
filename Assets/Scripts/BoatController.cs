@@ -14,7 +14,9 @@ public class BoatController : MonoBehaviour {
 	public float _timeOnAir = 1f;
 
 	Collider2D _collider;
+	Rigidbody2D rb;
 	SpriteRenderer _spriteRenderer;
+	public GameObject trail;
 
     private bool leftSensor;
     private bool rightSensor;
@@ -22,6 +24,7 @@ public class BoatController : MonoBehaviour {
 	void Start(){
 		_collider = GetComponent<Collider2D>();
 		_spriteRenderer = GetComponent<SpriteRenderer>();
+		rb = GetComponent<Rigidbody2D>();
 	}
 
 
@@ -42,6 +45,8 @@ public class BoatController : MonoBehaviour {
 		_isJumping = true;
 
 		_collider.enabled = false;
+		trail.SetActive(false);
+		rb.isKinematic = true;
 
 		float initLocalScaleX = transform.localScale.x;
 		while(transform.localScale.x < _maxSize){
@@ -58,6 +63,9 @@ public class BoatController : MonoBehaviour {
 
 		_collider.enabled = true;
 		_isJumping = false;
+		trail.SetActive(true);
+		rb.isKinematic = false;
+
 
 	}
 
