@@ -13,32 +13,39 @@ public class PlayerControllerPC : MonoBehaviour {
     private GameObject PlayerLeft;
     private GameObject PlayerRight;
 
+	private ResolutionManager ResManager;
+
     public GameObject WaterWave;
 
     void Start()
     {
+		ResManager = ResolutionManager.Instance;
         PlayerLeft = GameObject.FindGameObjectWithTag("PlayerLeft");
         PlayerRight = GameObject.FindGameObjectWithTag("PlayerRight");
     }
 
     public void MoveUpLeft()
     {
-        PlayerLeft.transform.Translate(Vector3.up * Time.deltaTime * speed);
+		if(PlayerLeft.transform.position.y <  ResManager.GetCameraPosition().y + ResManager.GetCameraHeight()/2)
+			PlayerLeft.transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
 
     public void MoveDownLeft()
-    {
-        PlayerLeft.transform.Translate(Vector3.down * Time.deltaTime * speed);
+	{
+		if (PlayerLeft.transform.position.y > ResManager.GetCameraPosition().y - ResManager.GetCameraHeight() / 2)
+			PlayerLeft.transform.Translate(Vector3.down * Time.deltaTime * speed);
     }
 
     public void MoveUpRight()
-    {
-        PlayerRight.transform.Translate(Vector3.up * Time.deltaTime * speed);
+	{
+		if (PlayerRight.transform.position.y < ResManager.GetCameraPosition().y + ResManager.GetCameraHeight() / 2)
+			PlayerRight.transform.Translate(Vector3.up * Time.deltaTime * speed);
     }
 
     public void MoveDownRight()
-    {
-        PlayerRight.transform.Translate(Vector3.down * Time.deltaTime * speed);
+	{
+		if (PlayerRight.transform.position.y > ResManager.GetCameraPosition().y - ResManager.GetCameraHeight() / 2)
+			PlayerRight.transform.Translate(Vector3.down * Time.deltaTime * speed);
     }
 
     public void ThrowStoneLeft()

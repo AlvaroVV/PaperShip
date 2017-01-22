@@ -24,11 +24,6 @@ public class BoatController : MonoBehaviour {
 		_spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
-	void Update(){
-		if(Input.GetKeyDown(KeyCode.Space)){
-			Jump();
-		}
-	}
 
     /*
 	void FixedUpdate () {
