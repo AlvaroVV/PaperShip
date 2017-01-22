@@ -116,7 +116,8 @@ public class UIMenuManager : MonoBehaviour {
 		}
 		if(_playButton != null){
 			_playButton.onClick.AddListener(delegate{
-				SceneManager.LoadScene(_playLevelName);
+                gameObject.SetActive(false);
+
 			});
 		}
 	}

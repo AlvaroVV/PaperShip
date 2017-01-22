@@ -21,7 +21,7 @@ public class LevelStartAnimation : MonoBehaviour {
 	InputAndroid inputAndroid;
 
 	void Start(){
-		StartAnimation();
+		//StartAnimation();
 	}
 
 	public void StartAnimation(){
@@ -44,17 +44,19 @@ public class LevelStartAnimation : MonoBehaviour {
 	IEnumerator AnimationCycle(){
 		yield return new WaitForSeconds(1f);
 
-		while(_boat.transform.position.y < _boatTarget.position.y){
+        yield return new WaitForSeconds(.2f);
+
+        while (_playerRight.transform.position.y < _playerRightTarget.position.y)
+        {
+            _playerRight.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        while (_boat.transform.position.y < _boatTarget.position.y){
 			_boat.transform.Translate(Vector2.up * _boatSpeed * Time.deltaTime);
 			yield return null;
 		}
 
-		yield return new WaitForSeconds(.2f);
-
-		while(_playerRight.transform.position.y < _playerRightTarget.position.y){
-			_playerRight.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
-			yield return null;
-		}
 
 		yield return new WaitForSeconds(.2f);
 
