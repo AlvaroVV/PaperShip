@@ -39,7 +39,9 @@ public class Health : MonoBehaviour {
 			initialRestart = false;
 		}
 		else{
-			anim.SetTrigger("Restart");
+			// anim.SetTrigger("Restart");
+			anim.SetInteger("BoatMode", 3);
+
 		}
 		transform.localScale = initialScale;
 		if(routine != null)
@@ -55,11 +57,14 @@ public class Health : MonoBehaviour {
 			audio.Play();
 			if (currentHP <= 0)
 			{
-				anim.SetTrigger("Muerto");
+				anim.SetInteger("BoatMode", 0);
+				// anim.SetTrigger("Muerto");
 				GameManager.Instance.GameOver(true);
 			}
 			else{
-				anim.SetTrigger("Vida" + currentHP);
+				anim.SetInteger("BoatMode", currentHP);
+
+				// anim.SetTrigger("Vida" + currentHP);
 			}
 			routine = TimeInvencible();
 			StartCoroutine(routine);

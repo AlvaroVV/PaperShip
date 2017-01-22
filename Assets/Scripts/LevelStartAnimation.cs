@@ -62,19 +62,19 @@ public class LevelStartAnimation : MonoBehaviour {
 
 		yield return new WaitForSeconds(.2f);
 
-		//  while (_playerRight.transform.position.y < _playerRightTarget.position.y)
-		// {
-		// 	_playerRight.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
-		// 	yield return null;
-		// }
+		 while (_playerRight.transform.position.y < _playerRightTarget.position.y)
+		{
+			_playerRight.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
+			yield return null;
+		}
 
-		// yield return new WaitForSeconds(.2f);
+		yield return new WaitForSeconds(.2f);
 
 
-		// while(_playerLeft.transform.position.y < _playerLeftTarget.position.y){
-		// 	_playerLeft.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
-		// 	yield return null;
-		// }
+		while(_playerLeft.transform.position.y < _playerLeftTarget.position.y){
+			_playerLeft.transform.Translate(Vector2.up * _playerSpeed * Time.deltaTime);
+			yield return null;
+		}
 
 
 		yield return new WaitForSeconds(1f);
