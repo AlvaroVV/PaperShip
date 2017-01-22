@@ -9,6 +9,8 @@ public class UIPGameFinishedManager : MonoBehaviour {
 	public Button _restartGameButton;
 	public Button _exitGameButton;
 
+	public string _sceneName;
+
 	// Use this for initialization
 	void Awake()
 	{
@@ -25,6 +27,7 @@ public class UIPGameFinishedManager : MonoBehaviour {
 		if (_restartGameButton != null)
 		{
 			_restartGameButton.onClick.AddListener(delegate {
+				SceneManager.LoadScene(_sceneName);
 			});
 		}
 		if (_exitGameButton != null)

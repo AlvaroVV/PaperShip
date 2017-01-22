@@ -30,6 +30,18 @@ public class TimeControllManager : MonoBehaviour {
 		audioSource.Stop();
 		spawner.SetGameFinished(true);
 		UIManager.Instance.ShowFinalPanel();
+
+
+		if (Application.platform == RuntimePlatform.Android)
+		{
+			GetComponent<InputAndroid>().enabled = false;
+			GetComponent<PlayerControllerAndroid>().enabled = false;
+		}
+		else
+		{
+			GetComponent<InputPC>().enabled = false;
+			GetComponent<PlayerControllerPC>().enabled = false;
+		}
 	}
 
 	// Use this for initialization
