@@ -52,12 +52,14 @@ public class Health : MonoBehaviour {
 		{
 			invencible = true;
 			currentHP -= damage;
-			anim.SetTrigger("Vida" + currentHP);
 			audio.Play();
 			if (currentHP <= 0)
 			{
 				anim.SetTrigger("Muerto");
 				GameManager.Instance.GameOver(true);
+			}
+			else{
+				anim.SetTrigger("Vida" + currentHP);
 			}
 			routine = TimeInvencible();
 			StartCoroutine(routine);
